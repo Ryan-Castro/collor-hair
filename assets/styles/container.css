@@ -1,0 +1,114 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    background-color: blue;
+}
+.container{
+    background-color: lightblue;
+    position: absolute;
+    z-index: 10;
+    height: 100vh;
+    overflow: hidden;
+    width: 0px;
+    transition: width .5s;
+}
+
+.container.active{
+    width: 80vw !important;
+    visibility: visible;
+}
+#content{
+    margin: 5px;
+    height: 98vh;
+    background-color: white;
+    width: calc(100vw - 10px);
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px black;
+}
+
+li{
+    background-color: white;
+    margin-top: 5px;
+    border: 1px solid black;
+    padding-left: 10px;
+    border-radius: 10px;
+    width: 90%;
+    overflow: hidden;
+    max-height: 28px;
+    transition: max-height .5s;
+} 
+li.active{
+    max-height: 200px;
+}
+
+
+
+li input{
+    float: right;
+    margin-right: 5px;
+    margin-top: 2px;
+    border: none;
+    background-color: rgba(153, 205, 50, 0);
+}
+
+#more{
+    position: relative;
+    left: 0px;
+    border: none;
+    font-size: 20px;
+    background-color: gray;
+    color: white;
+    padding: 0px 10px;
+    height: 100vh;
+}
+
+#less{
+    position: absolute;
+    right: 0px;
+    border: none;
+    font-size: 20px;
+    background-color: gray;
+    color: white;
+    padding: 0px 10px;
+    height: 100vh;
+}
+
+#content>div{
+    display: none;
+    padding: 10px;
+}
+
+div.show{
+    display: flex !important;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.calendario li{
+    display: flex;
+}
+
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+tr{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+td, th{
+    border: 1px solid black;
+    text-align: center;
+    margin: 0px;
+}
+
+#form{
+    order: 1;
+}

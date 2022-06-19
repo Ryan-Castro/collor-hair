@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#login{
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login section{
+    background-color: white;
+    max-width: 500px;
+    height: 250px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+#login input{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}

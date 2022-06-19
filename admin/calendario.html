@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/styles/container.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="stylesheet" href="../assets/styles/load.css">
+    <title>base</title>
+</head>
+<body>
+
+    <div id="load">
+        collor Hair
+    </div>
+    <div class="container">
+        <input type="button" value="&lt;" id="less" onclick="less('.container')">
+        <ul>
+            <li id="calendario" class="listagem"  onclick="moreAndLess(this), show(this), calendario()">
+                <h3>Calendário</h3>
+                <ul class="sub-list">
+                    <li>Eventos</li>
+                    <li>Clientes</li>
+                </ul>
+            </li>
+            <li id="contatos" onclick="show(this)"><h3>Contatos</h3></li>
+            <li id="meta-mes" onclick="show(this)"><h3>Meta do Mes</h3></li>
+            <li id="contabilidade"class="listagem" onclick="moreAndLess(this), show(this)">
+                <h3>Contabilidade</h3>
+                <ul class="sub-list">
+                    <li>Eventos</li>
+                    <li>Clientes</li>
+                </ul>
+            </li>
+            <li id="contas" onclick="show(this)"><h3>Contas</h3></li>
+        </ul>
+        
+    </div>
+
+    <input type="button" value="&gt;" id="more" onclick="more('.container')">
+    
+    <div id="content">
+        <div class="calendario">
+            <table>
+                
+            </table>
+            <div id="form">
+                <input type="date" name="data" id="data">
+                <input type="text" id="cliente">
+                <input type="text" id="local">
+                <input type="text" id="descricao">
+                <input type="button" value="Adicionar" onclick="enviar()">
+            </div>
+        </div>
+        <div class="contatos">contatos</div>
+        <div class="meta-mes">meta do mes</div>
+        <div class="contabilidade">contabilidade</div>
+        <div class="contas">contas</div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="../assets/scripts/login.js"></script>
+    <script src="../assets/scripts/menu.js"></script>
+</body>
+</html>
