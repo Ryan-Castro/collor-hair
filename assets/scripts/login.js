@@ -32,31 +32,28 @@ function login(){
 //verificação
 //------------------------------
 
-/* if(location.href == "file:///C:/Users/Ryan/Desktop/cursos/collor-hair/login.html"){
+if(location.href == "https://ryan-castro.github.io/collor-hair/login.html"){
   auth.onAuthStateChanged(user=>{
     if(user){
-      location.href ="file:///C:/Users/Ryan/Desktop/cursos/collor-hair/admin/calendario.html"
+      location.href ="https://ryan-castro.github.io/collor-hair/admin/calendario.html"
       hideLoad()
-      console.log(user)
     }
   } )
 }else{
   hideLoad()
 }
-console.log(location.href)
- if(location.href != "file:///C:/Users/Ryan/Desktop/cursos/collor-hair/login.html"){
+ if(location.href != "https://ryan-castro.github.io/collor-hair/login.html"){
   auth.onAuthStateChanged(user=>{
     if(user){
-      console.log(auth.currentUser)
       hideLoad()
-    }else if(location.href != "/C:/Users/Ryan/Desktop/cursos/collor-hair/login.html"){
-      location.href = "/C:/Users/Ryan/Desktop/cursos/collor-hair/login.html"
+    }else if(location.href != "https://ryan-castro.github.io/collor-hair/login.html"){
+      location.href = "https://ryan-castro.github.io/collor-hair/login.html"
       hideLoad()
     }
   } )
 }else{
   hideLoad()
-} */
+}
 //------------------------------
 
 console.log(location.href)
