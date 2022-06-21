@@ -56,8 +56,6 @@ if(location.href == "https://ryan-castro.github.io/collor-hair/login.html"){
 }
 //------------------------------
 
-console.log(location.href)
-
 function hideLoad(){
   setInterval(() => {
     document.querySelector("#load").classList.add("hide")
