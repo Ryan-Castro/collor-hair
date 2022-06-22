@@ -116,3 +116,18 @@ td, th{
 tr.concluido{
     background-color: gray;
 }
+
+#modal{
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+#modal>section{
+    max-width: 90vw;
+    background-color: gray;
+}

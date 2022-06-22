@@ -15,6 +15,11 @@
     <div id="load">
         collor Hair
     </div>
+    <div id="modal">
+        <section>
+
+        </section>
+    </div>
     <div class="container">
         <input type="button" value="&lt;" id="less" onclick="less('.container')">
         <ul>
@@ -25,16 +30,10 @@
                     <li>Clientes</li>
                 </ul>
             </li>
-            <li id="contatos" onclick="show(this)"><h3>Contatos</h3></li>
-            <li id="meta-mes" onclick="show(this)"><h3>Meta do Mes</h3></li>
-            <li id="contabilidade"class="listagem" onclick="moreAndLess(this), show(this)">
-                <h3>Contabilidade</h3>
-                <ul class="sub-list">
-                    <li>Eventos</li>
-                    <li>Clientes</li>
-                </ul>
+            <li id="contatos" onclick="show(this), contatos()"><h3>Contatos</h3></li>
+            <li id="resultados" onclick="show(this), resultados()"><h3>Resultados</h3></li>
             </li>
-            <li id="contas" onclick="show(this)"><h3>Contas</h3></li>
+            
         </ul>
         
     </div>
@@ -55,9 +54,7 @@
             </div>
         </div>
         <div class="contatos">contatos</div>
-        <div class="meta-mes">meta do mes</div>
-        <div class="contabilidade">contabilidade</div>
-        <div class="contas">contas</div>
+        <div class="resultados">resultados</div>
     </div>
 
 
@@ -66,5 +63,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="../assets/scripts/login.js"></script>
     <script src="../assets/scripts/menu.js"></script>
+    <script src="../assets/scripts/contatos.js"></script>
+    <script src="../assets/scripts/resultados.js"></script>
 </body>
 </html>

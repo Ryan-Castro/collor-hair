@@ -22,7 +22,7 @@ function calendario(){
             let local = doc.data().local
             let descricao = doc.data().descricao
             itens += `  <tr id="${doc.id}" class="${doc.data().status}">
-                            <td><input value="Realizado" type="button" onclick="concluir('${id}', '${data}', '${cliente}', '${local}', '${descricao}')"></td>
+                            <td><input value="Realizado" type="button" onclick="fechar('${id}', '${data}', '${cliente}', '${local}', '${descricao}')"></td>
                             <td>${data}</td>
                             <td>${cliente}</td>
                             <td>${local}</td>
@@ -99,11 +99,15 @@ function enviar(){
     document.querySelector("#local").value = "" 
     document.querySelector("#descricao").value = ""
 }
+function fechar(id, data, cliente, local, descricao){
+    document.querySelector("div#modal").style.display = "flex"
+    document.querySelector("#modal>section").innerHTML =  `<input type="text" id="valor" placeholder="Custo Final"><input value="Realizado" type="button" onclick="concluir('${id}', '${data}', '${cliente}', '${local}', '${descricao}')">`
+}
 
 function concluir(id, data, cliente, local, descricao){
-   db.collection("concluidos").add({
-
-
+    document.querySelector("div#modal").style.display = "none"
+    db.collection("concluidos").add({
+        valor:  Number(document.querySelector("#valor").value),
         data,
         cliente,
         local,
@@ -122,3 +126,17 @@ function deletar(id){
          calendario()
     })
 }
+
+function detalhes(doc){
+    document.querySelector("div#modal").style.display = "flex"
+    document.querySelector("#modal>section").innerHTML =  doc
+    
+    document.querySelector("div#modal").addEventListener("click", hideModal)
+}
+
+function hideModal(e){
+    if(e.target.id == "modal"){
+        document.querySelector("div#modal").style.display = "none"
+    }
+}
+  
