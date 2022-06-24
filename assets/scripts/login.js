@@ -23,7 +23,7 @@ function login(){
 
   auth.signInWithEmailAndPassword(userEmail, userPassoword)
   .then(loggedUser => {
-    location.href = "./admin/calendario.html"
+    location.href = "./admin/index.html"
   }).catch(error=>{
     alert("Senha ou Email Errado")
   })
@@ -35,7 +35,7 @@ function login(){
 if(location.href == "https://ryan-castro.github.io/collor-hair/login.html"){
   auth.onAuthStateChanged(user=>{
     if(user){
-      location.href ="https://ryan-castro.github.io/collor-hair/admin/calendario.html"
+      location.href ="https://ryan-castro.github.io/collor-hair/admin/index.html"
       hideLoad()
     }
   } )
