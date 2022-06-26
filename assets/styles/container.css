@@ -166,3 +166,31 @@ tr.concluido{
 section>input{
     margin-bottom: 10px;   
 }
+
+#processo{
+    width: 60vw;
+    padding: 15px;
+    background-color: darkturquoise;
+    border: 1px solid rgb(0, 154, 156);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 20px;
+}
+#fechar{
+    width: 60vw;
+    padding: 15px;
+    background-color: green;
+    border: 1px solid rgb(0, 70, 0);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 20px;
+}
+#delet{
+    width: 60vw;
+    padding: 15px;
+    background-color: red;
+    border: 1px solid rgb(190, 0, 0);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 20px;
+}
