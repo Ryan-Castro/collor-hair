@@ -118,7 +118,7 @@ table{
 
 tr{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 td, th{
     border: 1px solid black;
@@ -145,7 +145,7 @@ tr.concluido{
     background-color: gray;
 }
 
-#modal{
+.modal{
     background-color: rgba(0, 0, 0, 0.3);
     width: 100vw;
     height: 100vh;
@@ -155,7 +155,7 @@ tr.concluido{
     position: absolute;
 }
 
-#modal>section{
+.modal>section{
     max-width: 90vw;
     background-color: white;
     display: flex;

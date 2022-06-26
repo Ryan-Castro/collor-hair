@@ -1,38 +1,22 @@
+let itemSelect = { }
 function calendario(){
     db.collection("calendario").get()
     .then(snapshot=>{
-        let itens = `   <thead>
-                            <tr>
-                                <th>Concluir</th>
-                                <th>Datas</th>
-                                <th>Cliente</th>
-                                <th>Local</th>
-                                <th>Descrição</th>
-                                <th>Apagar</th>
-                            </tr>
-                        </thead>
-                        <tbody>`
+        let itens = ``
         
         snapshot.forEach(doc=>{
-            let id = doc.id
-            let data = doc.data().data
-            let cliente = doc.data().cliente
-            let local = doc.data().local
-            let descricao = doc.data().descricao
             itens += `  <tr id="${doc.id}" class="${doc.data().status}">
-                            <td><input value="Realizado" type="button" onclick="fechar('${id}', '${data}', '${cliente}', '${local}', '${descricao}')"></td>
-                            <td>${data}</td>
-                            <td>${cliente}</td>
-                            <td>${local}</td>
-                            <td><input value="descrição" type="button" onclick="modal('${descricao}')"></td>
-                            <td><input value="Apagar" type="button" onclick="deletar('${id}')"></td>
+                            <td>${doc.data().data}</td>
+                            <td>${doc.data().cliente}</td>
+                            <td>${doc.data().local}</td>
+                            <td><input type="button" value="Detalhes" onclick="detalhes('${doc.id}')"></td>
+
                         </tr>`
             } 
             
             
         )
-        itens += "</tbody>"
-       document.querySelector("table").innerHTML =  itens
+       document.querySelector("tbody").innerHTML =  itens
     })
 }
 
@@ -52,6 +36,7 @@ function enviar(){
 
         }).then(doc=>{
             calendario()
+            document.querySelector("div.modal").style.display = "none"
             
             
         })
@@ -64,19 +49,19 @@ function enviar(){
     document.querySelector("#descricao").value = ""
 }
 
-function fechar(id, data, cliente, local, descricao){
-    document.querySelector("div#modal").style.display = "flex"
-    document.querySelector("#modal>section").innerHTML =  `<input type="text" id="valor" placeholder="Custo Final"><input value="Realizado" type="button" onclick="concluir('${id}', '${data}', '${cliente}', '${local}', '${descricao}')">`
+function fechar(id){
+    document.querySelector("div#modalDet").style.display = "flex"
+    document.querySelector("#modalDet>section").innerHTML =  `<input type="text" id="valor" placeholder="Custo Final"><input value="Realizado" type="button" onclick="concluir('${id}')">`
 }
 
-function concluir(id, data, cliente, local, descricao){
-    document.querySelector("div#modal").style.display = "none"
+function concluir(id){
+    document.querySelector("div#modalDet").style.display = "none"
     db.collection("concluidos").add({
         valor:  Number(document.querySelector("#valor").value),
-        data,
-        cliente,
-        local,
-        descricao,
+        data: itemSelect.data,
+        cliente: itemSelect.cliente,
+        local: itemSelect.local,
+        descricao: itemSelect.descricao,
     }).then(element=>{
         db.collection("calendario").doc(id).update({
             status: "concluido"
@@ -88,7 +73,8 @@ function concluir(id, data, cliente, local, descricao){
 }
 function deletar(id){
     db.collection("calendario").doc(id).delete().then(()=>{
-         calendario()
+        document.querySelector("div#modalOptions").style.display = "none"
+        calendario()
     })
 }
 
@@ -97,9 +83,30 @@ function adicionar(){
                     <input type="text" id="cliente" placeholder="Cliente">
                     <input type="text" id="local" placeholder="Local">
                     <input type="text" id="descricao" placeholder="Descrição">
-                    <input type="button" value="Adicionar" onclick="enviar()"></input>`
+                    <input type="button" value="Adicionar" onclick="enviar()">`
 
-    document.querySelector("div#modal").style.display = "flex"
-    document.querySelector("div#modal>section").innerHTML = content
-    document.querySelector("div#modal").addEventListener("click", hideModal)
+    document.querySelector("div#modalOptions").style.display = "flex"
+    document.querySelector("#modalOptions>section").innerHTML = content
+    document.querySelector("div.modal").addEventListener("click", hideModal)
+}
+
+function detalhes(id){
+    db.collection("calendario").doc(id).get()
+    .then(snapshot=>{
+        itemSelect = {
+            id, 
+            data: snapshot.data().data, 
+            cliente: snapshot.data().cliente, 
+            local: snapshot.data().local, 
+            descricao: snapshot.data().descricao
+        }
+        let content = ` <input type="button" id="processo" value="processo" onclick="modal('${snapshot.data().descricao}')">
+                        <input type="button" id="fechar" value="Concluido" onclick="fechar('${id}')">
+                        <input type="button" id="delet" value="Apagar" onclick="deletar('${id}')">
+                        `
+
+    document.querySelector("div#modalOptions").style.display = "flex"
+    document.querySelector("div#modalOptions>section").innerHTML = content
+    document.querySelector("div.modal").addEventListener("click", hideModal)
+    })
 }

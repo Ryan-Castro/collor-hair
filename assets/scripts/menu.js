@@ -18,21 +18,19 @@ function show(element){
     
 }
 
-function modal(des){
-    console.log(des)
-}
 
-
-function detalhes(doc){
-    document.querySelector("div#modal").style.display = "flex"
-    document.querySelector("#modal>section").innerHTML =  doc
+function modal(doc){
+    document.querySelector("div#modalDet").style.display = "flex"
+    document.querySelector("#modalDet>section").innerHTML =  doc
     
-    document.querySelector("div#modal").addEventListener("click", hideModal)
+    document.querySelector("#modalDet").addEventListener("click", hideModal)
 }
 
 function hideModal(e){
-    if(e.target.id == "modal"){
-        document.querySelector("div#modal").style.display = "none"
+    let element = this
+    if(e.target.classList == "modal"){
+        element.innerHTML =  '<section></section>'
+        element.style.display = "none"
     }
 }
   
