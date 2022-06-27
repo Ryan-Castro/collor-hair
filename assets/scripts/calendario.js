@@ -3,8 +3,15 @@ function calendario(){
     db.collection("calendario").get()
     .then(snapshot=>{
         let itens = ``
-        
+        let mesBase = Number()
+        let data = new Date()
         snapshot.forEach(doc=>{
+            let mesAtual = Number(doc.data().data.slice(5,7))
+            if(mesBase<mesAtual){
+                data.setMonth(mesAtual-1)
+                itens += `<tr><th colspan="4" class="mes">${data.toLocaleString("pt-BR", {month: "long"})}</th></tr>`
+                mesBase = mesAtual
+            }
             itens += `  <tr id="${doc.id}" class="${doc.data().status}">
                             <td>${doc.data().data}</td>
                             <td>${doc.data().cliente}</td>
@@ -27,7 +34,7 @@ function enviar(){
     let descricao = document.querySelector("#descricao").value
 
     if(data != "" && cliente != "" && local != "" && descricao != ""){ 
-        db.collection("calendario").add({
+        db.collection("calendario").doc(data + Math.random().toString(36).substr(2, 9)).set({
             data, 
             cliente, 
             local, 
@@ -110,3 +117,4 @@ function detalhes(id){
     document.querySelector("div.modal").addEventListener("click", hideModal)
     })
 }
+
