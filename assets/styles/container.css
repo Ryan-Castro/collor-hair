@@ -12,7 +12,7 @@ body{
     background-color: lightblue;
     position: absolute;
     z-index: 10;
-    height: 100vh;
+    height:100%;
     overflow: hidden;
     width: 0px;
     transition: width .5s;
@@ -24,7 +24,7 @@ body{
 }
 #content{
     margin: 5px;
-    height: 98vh;
+    min-height: 98%;
     background-color: white;
     width: calc(100vw - 10px);
     border-radius: 20px;
