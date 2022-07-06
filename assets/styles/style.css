@@ -5,11 +5,14 @@
     margin: 0px;
     box-sizing: border-box;
 }
+html{
+    height: 100%;
+}
 body{
     background-color: black;
 }
 header{
-    height: 85vh;
+    height: 100vh;
     background-image: url("../imagens/bg-img.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -24,7 +27,7 @@ header{
     color: transparent;
     overflow: hidden;
     animation: revealText 1s var(--total) forwards;
-    font-size: 25px;
+    font-size: 20px;
     padding-left: 10px;
     font-family: 'Dancing Script';
 }
@@ -72,40 +75,64 @@ header{
     }
 }
 
+main{
+    padding: 0px 2%;
+    transform:  translateY(-80px);
+}
 section{
     color: black;
     background-color: white;
-    height: 150px;
+    height: 200px;
+    text-align: justify;
     display: flex;
-    box-shadow: inset 0px 2px 4px 0px rgb(0, 0, 0, .4);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.527);
 }
 
 section .content{
     display: block;
-    padding-left: 5px;
+    padding: 0px 7%;
     text-indent: 20px;
-}
-section.sobre{
-    box-shadow: none;
+    
 }
 section.sobre::before{
     content: '';
     background-color: blue;
     width: 5%;
     height: 100%;
-    display: block;
+    position: absolute;
+    border-radius: 10px 0px 0px 10px ;
+
 }
 section.trabalhos::after{
     content: '';
     background-color: red;
     width: 5%;
     height: 100%;
-    display: block;
+    position: absolute;
+    right: 0px;
+    border-radius: 0px 10px 10px 0px ;
 }
 section.contato::before{
     content: '';
     background-color: green;
     width: 5%;
     height: 100%;
-    display: block;
+    position: absolute;
+    border-radius: 10px 0px 0px 10px ;
+}
+
+.error{
+    display: none;
+    background-color: rgba(255, 93, 93, 0.705);
+    color: white;
+    text-shadow: 1px 1px 1px red;
+}
+.adicionado{
+    display: none;
+    background-color: rgb(57, 180, 57);
+    color: white;
+    text-shadow: 1px 1px 1px green;
 }

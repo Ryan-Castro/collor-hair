@@ -7,6 +7,7 @@ function calendario(){
         let data = new Date()
         snapshot.forEach(doc=>{
             let mesAtual = Number(doc.data().data.slice(5,7))
+            console.log(doc.data().data + "" + mesAtual)
             if(mesBase<mesAtual){
                 data.setMonth(mesAtual-1)
                 itens += `<tr><th colspan="4" class="mes">${data.toLocaleString("pt-BR", {month: "long"})}</th></tr>`

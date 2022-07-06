@@ -32,11 +32,21 @@
         <section class="contato">
             <div class="content">
                 <h1>Entre em Contato</h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium blanditiis hic nulla. Placeat et delectus dicta debitis eaque perferendis, architecto sint, aperiam porro veniam accusamus, mollitia velit at distinctio veritatis?</p>
+                <p>Deixe seu Contato para saber das novidades</p>
+                <input type="text" id='nome' placeholder="Nome">
+                <input type="email" id="email" placeholder="E-mail">
+                <input type="tel" id="tel" placeholder="Telefone">
+                <input type="button" value="Enviar" onclick="adicionar()">
+
+                <div class="error"></div>
+                <div class="adicionado"></div>
             </div>
         </section>
         
     </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="./assets/scripts/script.js"></script>
 </body>
 
 </html>
