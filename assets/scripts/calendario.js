@@ -6,7 +6,7 @@ function calendario(){
         let mesBase = Number()
         let data = new Date()
         snapshot.forEach(doc=>{
-            let mesAtual = Number(doc.data().data.slice(1,7))
+            let mesAtual = Number(doc.data().data.slice(1,7).replace("-", ""))
             console.log(doc.data().data + "" + mesAtual)
             if(mesBase<mesAtual){
                 data.setMonth(mesAtual-1)
