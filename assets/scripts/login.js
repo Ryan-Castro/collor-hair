@@ -30,10 +30,10 @@ function login(){
 }
 console.log(location.pathname)
 
-if (location.pathname == "collor-hair/login.html") {
+if (location.pathname == "/collor-hair/login.html") {
   auth.onAuthStateChanged(user => {
     if (user) {
-      location.pathname = "collor-hair/admin/index.html"
+      location.pathname = "/collor-hair/admin/index.html"
       hideLoad()
       console.log("foi")
     }
@@ -42,10 +42,10 @@ if (location.pathname == "collor-hair/login.html") {
 
   })
 }
-if (location.pathname == "collor-hair/admin/index.html") {
+if (location.pathname == "/collor-hair/admin/index.html") {
   auth.onAuthStateChanged(user => {
-    if (location.pathname != "collor-hair/login.html" && !user){
-      location.pathname = "collor-hair/login.html"
+    if (location.pathname != "/collor-hair/login.html" && !user){
+      location.pathname = "/collor-hair/login.html"
       hideLoad()
       console.log("foi")
       
