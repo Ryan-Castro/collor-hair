@@ -39,7 +39,7 @@ li{
     border-radius: 10px;
     width: 90%;
     overflow: hidden;
-    max-height: 28px;
+    height: 30vh;
     transition: max-height .5s;
 } 
 li.active{
@@ -159,7 +159,7 @@ tr.concluido{
     padding: 20px;
 }
 
-section>input{
+section>input, select{
     margin-bottom: 10px;   
 }
 section>textarea{

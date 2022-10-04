@@ -1,0 +1,19 @@
+.contatos>ul{
+    display: flex;
+}
+.card{
+    width: 400px;
+    height: 100px;
+    max-height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-right: 5px;
+    padding-right: 20px;
+}
+
+.card>p{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+

@@ -28,9 +28,16 @@ const firebaseConfig = {
                 if(existente){
                     alert('Contato já existente')
                 } else {
-                db.collection("contatos").doc(nome + Math.random().toString(36).substr(2, 9)).set({
-                email,
-                tel
+                    if(tel == ""){
+                        tel = "numero não indentificado"
+                    }
+                    if(email == ""){
+                        email = "email não indentificado"
+                    }
+                    db.collection("contatos").doc(nome + Math.random().toString(36).substr(2, 9)).set({
+                    nome,
+                    email,
+                    tel
             }).then(doc=>{
                 document.querySelector(".adicionado").style.display = "flex"
                 document.querySelector('.adicionado').innerHTML = "Contato salvo com sucesso"

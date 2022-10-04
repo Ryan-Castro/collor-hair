@@ -126,14 +126,17 @@ function detalhes(id){
 
 function alterar(){
     document.querySelector("div#modalDet").style.display = "flex"
-    let alterarConteudo = "<select>"
+    let alterarConteudo = ` <h4>Escolha o que deseja alterar</h4>   
+                            <select>`
     for(let obj in itemSelect){
         if(obj != "id"){
             alterarConteudo += `<option value="${obj}">${obj}</option>`
         }
     }
     alterarConteudo+= `</select>
+                        <h4>Para Textos</h4>
                         <input type="text" id="txtAlt">
+                        <h4>Para Data</h4>
                         <input type="date" id="dateAlt">
                         <input type="button" onclick="confirmarAlteracao()" value="confirmar a alteração">`
 
