@@ -6,15 +6,15 @@ function calendario(){
         let mesBase = Number()
         let data = new Date()
         snapshot.forEach(doc=>{
-            let mesAtual = Number(doc.data().data.slice(1,7).replace("-", ""))
-            console.log(doc.data().data + "" + mesAtual)
+            let mesAtual = Number(doc.data().data.slice(0,7).replace("-", ""))
             if(mesBase<mesAtual){
-                data.setMonth(mesAtual-1)
-                itens += `<tr><th colspan="4" class="mes">${data.toLocaleString("pt-BR", {month: "long"})}</th></tr>`
+                data.setMonth(mesAtual.toString().slice(4,6)-1)
+                data.setFullYear(mesAtual.toString().slice(0, 4))
+                itens += `<tr><th colspan="4" class="mes">${data.toLocaleString("pt-BR", {month: "long"})} - ${data.toLocaleString("pt-BR", {year: "numeric"})}</th></tr>`
                 mesBase = mesAtual
             }
             itens += `  <tr id="${doc.id}" class="${doc.data().status}">
-                            <td>${doc.data().data}</td>
+                            <td>${doc.data().data.slice(8,10)} As ${doc.data().hora}</td>
                             <td>${doc.data().cliente}</td>
                             <td>${doc.data().local}</td>
                             <td><input type="button" value="Detalhes" onclick="detalhes('${doc.id}')"></td>
@@ -33,6 +33,7 @@ function enviar(){
     let cliente = document.querySelector("#cliente").value
     let local = document.querySelector("#local").value
     let descricao = document.querySelector("#descricao").value
+    let hora = document.querySelector("#hora").value
 
     if(data != "" && cliente != "" && local != "" && descricao != ""){ 
         db.collection("calendario").doc(data + Math.random().toString(36).substr(2, 9)).set({
@@ -40,6 +41,7 @@ function enviar(){
             cliente, 
             local, 
             descricao,
+            hora,
             status: "não-concluido"
 
         }).then(doc=>{
@@ -88,9 +90,10 @@ function deletar(id){
 
 function adicionar(){
     let content = ` <input type="date" name="data" id="data">
+                    <input type="text" name="hora" id="hora" placeholder="Hora">
                     <input type="text" id="cliente" placeholder="Cliente">
                     <input type="text" id="local" placeholder="Local">
-                    <input type="text" id="descricao" placeholder="Descrição">
+                    <textarea id="descricao" placeholder="descrição"></textarea>
                     <input type="button" value="Adicionar" onclick="enviar()">`
 
     document.querySelector("div#modalOptions").style.display = "flex"
@@ -104,13 +107,15 @@ function detalhes(id){
         itemSelect = {
             id, 
             data: snapshot.data().data, 
+            hora: snapshot.data().hora,
             cliente: snapshot.data().cliente, 
             local: snapshot.data().local, 
             descricao: snapshot.data().descricao
         }
-        let content = ` <input type="button" id="processo" value="processo" onclick="modal('${snapshot.data().descricao}')">
+        let content = ` <input type="button" id="processo" value="Processo" onclick="modal('${snapshot.data().descricao}')">
                         <input type="button" id="fechar" value="Concluido" onclick="fechar('${id}')">
                         <input type="button" id="delet" value="Apagar" onclick="deletar('${id}')">
+                        <input type="button" id="alterar" value="Alterar" onclick="alterar()">
                         `
 
     document.querySelector("div#modalOptions").style.display = "flex"
@@ -119,3 +124,39 @@ function detalhes(id){
     })
 }
 
+function alterar(){
+    document.querySelector("div#modalDet").style.display = "flex"
+    let alterarConteudo = "<select>"
+    for(let obj in itemSelect){
+        if(obj != "id"){
+            alterarConteudo += `<option value="${obj}">${obj}</option>`
+        }
+    }
+    alterarConteudo+= `</select>
+                        <input type="text" id="txtAlt">
+                        <input type="date" id="dateAlt">
+                        <input type="button" onclick="confirmarAlteracao()" value="confirmar a alteração">`
+
+    
+    document.querySelector("#modalDet>section").innerHTML = alterarConteudo
+    
+    document.querySelector("#modalDet").addEventListener("click", hideModal)
+}
+
+function confirmarAlteracao(){
+    let select = document.querySelector("select")
+    let value = select.options[select.selectedIndex].value
+    if(value == "data"){
+        var txt = document.querySelector("#dateAlt").value
+    }else{
+    var txt = document.querySelector("#txtAlt").value
+    }
+
+    let alteracao = {} 
+    alteracao[value] = txt
+    
+    db.collection("calendario").doc(itemSelect.id).update(alteracao)
+    calendario()
+    document.querySelector("div.modal").style.display = "none"
+    document.querySelector("div#modalDet").style.display = "none"
+}

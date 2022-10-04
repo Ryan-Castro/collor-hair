@@ -162,6 +162,9 @@ tr.concluido{
 section>input{
     margin-bottom: 10px;   
 }
+section>textarea{
+    margin-bottom: 10px;   
+}
 
 #processo{
     width: 60vw;
@@ -172,6 +175,7 @@ section>input{
     text-shadow: 1px 1px 1px black;
     font-size: 20px;
 }
+
 #fechar{
     width: 60vw;
     padding: 15px;
@@ -190,7 +194,15 @@ section>input{
     text-shadow: 1px 1px 1px black;
     font-size: 20px;
 }
-
+#alterar{
+    width: 60vw;
+    padding: 15px;
+    background-color: goldenrod;
+    border: 1px solid rgb(184, 140, 27);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 20px;
+}
 
 .mes{
     padding: 5px;
