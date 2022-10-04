@@ -28,19 +28,19 @@ function login(){
     alert("Senha ou Email Errado")
   })
 }
-if (location.pathname == "collor-hair/login.html") {
+if (location.pathname == "/login.html") {
   auth.onAuthStateChanged(user => {
     if (user) {
-      location.pathname = "collor-hair/admin/index.html"
+      location.pathname = "/admin/index.html"
       hideLoad()
     }
     hideLoad()
   })
 }
-if (location.pathname == "collor-hair/admin/index.html") {
+if (location.pathname == "/admin/index.html") {
   auth.onAuthStateChanged(user => {
-    if (location.pathname != "collor-hair/login.html" && !user) {
-      location.pathname = "collor-hair/login.html"
+    if (location.pathname != "/login.html" && !user) {
+      location.pathname = "/login.html"
       hideLoad()
       
     }else{
